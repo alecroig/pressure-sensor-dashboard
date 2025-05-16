@@ -1,0 +1,105 @@
+<!---the website to go to:
+ http://localhost:8000/index.html --> 
+
+<!DOCTYPE html>
+<html lang="en">   
+<head> 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pressure Sensor Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
+  <style>
+    body { font-family: sans-serif; margin: 20px; }
+
+    button {
+      margin: 5px;
+      padding: 15px 25px;
+      font-size: 16px;
+      border-radius: 12px;
+      background-color: #e0e0e0;
+      color: black;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .connected { background-color: #4CAF50 !important; color: white; }
+    .started { background-color: #4caf50; color: white; }
+    .stopped { background-color: #f44336; color: white; }
+    .reset-ready { background-color: #ffc107; color: black; }
+
+    .control-group { margin-bottom: 20px; }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      width: 250px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    #saveButton { background-color: #2196F3; }
+
+    hr {
+      margin: 30px 0;
+      border: 0;
+      border-top: 2px solid #ccc;
+    }
+
+    #log {
+      width: 80%;
+      height: 200px;
+      margin-top: 10px;
+      padding: 10px;
+      font-family: monospace;
+      background-color: #f9f9f9;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      overflow-y: auto;
+    }
+
+    #chart-container {
+      width: 100%;
+      height: 400px;
+      margin-top: 20px;
+    }
+
+    #eventControls {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pressure Sensor Dashboard</h1>
+
+  <div class="control-group">
+    <button id="connectButton">🔌 Connect to Sensor</button>
+    <button id="startButton" disabled>▶️ Start</button>
+    <button id="stopButton" disabled>⏹️ Stop</button>
+    <button id="resetButton" disabled>🔄 Reset</button>
+  </div>
+
+  <div class="control-group">
+    <label for="testName" style="font-weight: bold;">File Name:</label>
+    <input type="text" id="testName" placeholder="Enter test name..." />
+    <button id="saveButton" disabled>💾 Save CSV</button>
+  </div>
+
+  <hr />
+
+  <textarea id="log" readonly></textarea>
+
+  <div id="eventControls">
+    <label for="eventInput"><strong>Log Time Event:</strong></label>
+    <input type="text" id="eventInput" placeholder="Event description..." />
+    <button id="eventButton">📍 Add Event</button>
+  </div>
+
+  <div id="chart-container">
+    <canvas id="pressureChart"></canvas>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
