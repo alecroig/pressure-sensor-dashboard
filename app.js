@@ -84,6 +84,8 @@ stopButton.addEventListener('click', async () => {
         stopButton.classList.add('stopped');
         startButton.classList.remove('started');
         isStreaming = false;
+        resetButton.disabled = false;
+        resetButton.classList.add('reset-ready');
 
         logMessage("⏹️ Stopped data stream");
     } 
@@ -107,9 +109,6 @@ saveButton.addEventListener('click', () => {
     a.download = '${fileName}.csv';
     a.click();
     URL.revokeObjectURL(url);
-
-    resetButton.disabled = false;
-    resetButton.classList.add('reset-ready');
 });
 
 // Event logging
