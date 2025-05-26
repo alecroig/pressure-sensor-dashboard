@@ -1,4 +1,16 @@
-// Main Code to run all the html call back functions 
+/* 
+Main JS code to run a html site for the pressure sensor 
+
+Website to use: 
+http://localhost:8000/index.html (if running locally)
+https://alecroig.github.io/pressure-sensor-dashboard/ (if running offline)
+
+Last Edited: 05/26/25
+Changes: 
+    - reset button change 
+    - time stamp log message change 
+
+*/
 
 let bleDevice, bleServer, pressureCharacteristic;
 let isConnected = false;
@@ -122,10 +134,10 @@ eventButton.addEventListener('click', () => {
     const timestamp = now.toLocaleString();
 
     // log with emoji
-    const logLine = `${timestamp.padEnd(22)} ${elapsed.padStart(8)} sec ${pressure.toFixed(4).padStart(10)} psi`;
+    const logLine = `${timestamp.padEnd(22)} ${latestElapsed.toFixed(3).padStart(8)} sec ${latestPressure.toFixed(4).padStart(10)} psi  📍${name}`;
     logMessage(logLine);
 
-    // Mark in data and chart
+    // Mark in the data and chart
     receivedData.push([timestamp, latestElapsed.toFixed(3), latestPressure.toFixed(4), name]);
 
     // Add vertical line annotation
