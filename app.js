@@ -239,6 +239,7 @@ window.onload = () => {
 // Reset dashboard
 resetButton.addEventListener('click', () => {
     pressureChart.data.datasets[0].data = [];
+    pressureChart.options.plugins.annotation.annotations = {};
     pressureChart.update();
 
     logArea.value = '';
